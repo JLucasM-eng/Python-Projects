@@ -7,14 +7,13 @@ import numpy as np #para o topico de senoides no python
 import librosa.display
 
 #titulo
-st.write("Primeiro teste - Espectrograma")
 
 # cabeçalho
 
-st.subheader("Espectrograma")
+st.title("Espectrograma")
 
 #Carregando o audio
-fname = "/home/joselucas/dev/ic/python_projects/test_working_audio/data/teste.ogg"
+fname = "teste.wav"
 fs = 44100 # Frequencia de amostragem
 y, sr = librosa.load(fname,mono=True,sr=44100)
 
@@ -27,13 +26,21 @@ T = librosa.amplitude_to_db(S,ref=np.max)
 librosa.display.specshow(T,y_axis='log',x_axis='time',sr=fs)
 plt.xlabel('Time[s]')
 plt.ylabel('Frequency [ Hz ]')
-plt.colorbar(format='%2.0f db')
+
+
+fig, ax = plt.subplots()
+ax.specgram(y[0:1000000],NFFT=5000,Fs=sr,noverlap=400,cmap='magma',scale='dB')
+
+st.pyplot(fig)
+
+
+#plt.colorbar(format='%2.0f db')
 #audio_file = open(fname, 'rb')
 #audio_bytes = audio_file.read()
 #st.audio(audio_bytes, format='audio/ogg')
 #nome dos usuarios
 #user_input = st.sidebar.text_input("Digite seu nome")
-
+ 
 #Escrevendo o nome do usuário
 #st.write("Paciente",user_input)
 
