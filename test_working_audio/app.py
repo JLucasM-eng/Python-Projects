@@ -21,17 +21,19 @@ S = librosa.stft(y, n_fft=1000, hop_length=200,win_length=1000)
 
 S = np.abs(S)
 
-plt.figure(figsize=(30,8))
+plt.figure(figsize=(15,4))
 T = librosa.amplitude_to_db(S,ref=np.max)
 librosa.display.specshow(T,y_axis='log',x_axis='time',sr=fs)
 plt.xlabel('Time[s]')
 plt.ylabel('Frequency [ Hz ]')
+plt.colorbar(format='%2.0f db')
 
 
-fig, ax = plt.subplots()
-ax.specgram(y[0:1000000],NFFT=5000,Fs=sr,noverlap=400,cmap='magma',scale='dB')
-
-st.pyplot(fig)
+#fig, ax = plt.subplots()
+#plt.specgram(y[0:1000000],NFFT=5000,Fs=sr,noverlap=400,cmap='magma')
+#plt.xlabel('Time[s]')
+#plt.ylabel('Frequency [ Hz ]')
+st.pyplot(plt)
 
 
 #plt.colorbar(format='%2.0f db')
